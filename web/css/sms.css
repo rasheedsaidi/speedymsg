@@ -1,0 +1,41 @@
+#auth-container {
+    margin: 2em auto;
+    /*transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);*/
+    position: relative;
+    width: 300px;
+}
+.text.form-control, #auth-container .form-control {
+	width: 100%;
+}
+.button .blue {
+    background: #a44978;
+    background: -webkit-gradient(linear,0 0,0 100%,from(#ec91bf),to(#a44978));
+    background: -moz-linear-gradient(90deg,#a44978,#ec91bf);
+    background: -webkit-linear-gradient(90deg,#a44978,#ec91bf);
+    background: -ms-linear-gradient(90deg,#a44978,#ec91bf);
+    background: -o-linear-gradient(90deg,#a44978,#ec91bf);
+    background: linear-gradient(to bottom,#ec91bf,#a44978);
+    -pie-background: linear-gradient(90deg,#a44978,#ec91bf);
+    border: 1px solid #616161;
+    behavior: url(/PIE.htc);
+}
+.btn-block {
+	width: 100%;
+}
+.help-block {
+	color: red;
+    margin-bottom: 1em;
+}
+.gap {
+	margin: 2em;
+}
+.gap-50 {
+	clear: both;
+	float: left;
+	width: 100%;
+	height: 50px;
+}
