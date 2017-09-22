@@ -40,7 +40,7 @@ class AuthAsset extends AssetBundle
 		
 	];
     public $js = [
-		'web/js/jqueryb8ff.js',
+		//'web/js/jqueryb8ff.js',
 		'web/js/jquery.plugins6f3e.js',
 		'web/js/mfn.menu6f3e.js',
 		'web/js/jquery-migrate.min330a.js',
@@ -49,10 +49,11 @@ class AuthAsset extends AssetBundle
 		'web/js/jquery/ui/core.mine899.js',
 		'web/js/jquery/ui/widget.mine899.js',
 		'web/js/jquery/ui/tabs.mine899.js',
+		'web/js/sms.js',
 	
     ];
     public $depends = [
-        //'yii\web\YiiAsset',
+        'yii\web\YiiAsset',
         //'yii\bootstrap\BootstrapAsset',
     ];
 }

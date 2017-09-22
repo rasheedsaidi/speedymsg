@@ -9,7 +9,7 @@ $request_url = urldecode(Url::toRoute(['/site/request']));
 
 <div class="sections_group">
 <div class="section   " style="padding-top:20px; padding-bottom:20px; background-color:#ffffff"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column"><center><h2>Simple and Fast SMS Messaging</h2></center><center>
-<br><h5>The <b> bulk sms messaging</b> platform that lets you <b>send bulk sms </b> at <b>99.9% delivery rate</b> <br>
+<br><h5 class="home-text-intro">The <b> bulk sms messaging</b> platform that lets you <b>send bulk sms </b> at <b>99.9% delivery rate</b> <br>
 at <b>relatively high speed</b> with a simple, sleek, and <b>friendly</b> user interface</h5></center></div><div class="column one-second column_column"><img width="560" height="315" src="<?php echo Yii::$app->request->baseUrl; ?>/web/images/dash1.png" ></div><div class="column one-second column_column"> <div id="twk-signup-form-container">
 <form name="twk-signup-form" method="post" id="twk-signup-form">
 <h6 id="twk-signup-form-header">To <b><span class="hlight">request a quote</span></b> is really simple.</h6>
