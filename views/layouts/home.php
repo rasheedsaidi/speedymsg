@@ -9,6 +9,12 @@ use app\assets\HomeAsset;
 
 HomeAsset::register($this);
 $home_url = urldecode(Url::toRoute(['/site/index']));
+$login_url = urldecode(Url::toRoute(['/user/login']));
+$register_url = urldecode(Url::toRoute(['/user/register']));
+$services_url = urldecode(Url::toRoute(['/site/services']));
+$pricing_url = urldecode(Url::toRoute(['/site/pricing']));
+$about_url = urldecode(Url::toRoute(['/site/about']));
+$api_url = urldecode(Url::toRoute(['/site/api']));
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html><!-- #0B670B #054705 -->
@@ -39,16 +45,16 @@ $home_url = urldecode(Url::toRoute(['/site/index']));
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 
+<!-- Global Site Tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-107316048-1"></script>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
 
-  ga('create', 'UA-43064934-1', 'auto');
-  ga('send', 'pageview');
-
-</script>      
+  gtag('config', 'UA-107316048-1');
+</script>
+     
 
 <link rel='dns-prefetch' href='http://fonts.googleapis.com/'/>
 <!--[if lt IE 9]>
@@ -75,21 +81,21 @@ $home_url = urldecode(Url::toRoute(['/site/index']));
  
 <div class="menu_wrapper">
  
-<a id="header_action_button" href="index.html">Sign Up</a>
+<a id="header_action_button" href="<?= $register_url ?>">Sign Up</a>
  
 
  
-<nav id="menu" class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-1647" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="features/index.html"><span>Why SpeedySMS</span></a>
+<nav id="menu" class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-1647" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"><a href="<?= $about_url ?>"><span>Why SpeedySMS</span></a>
 <ul class="sub-menu ">
-<li id="menu-item-844" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="tawk-to-for-windows/index.html"><span>Advantages</span></a></li>
-<li id="menu-item-752" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="download-the-tawk-to-mac-osx/index.html"><span>Mission</span></a></li>
-<li id="menu-item-266" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="features/android-app/index.html"><span>Vision</span></a></li>
+<li id="menu-item-844" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?= $about_url ?>"><span>About</span></a></li>
+<li id="menu-item-752" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?= $about_url . '#mission' ?>"><span>Mission</span></a></li>
+<li id="menu-item-266" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?= $about_url . '#vision' ?>"><span>Vision</span></a></li>
 </ul>
 </li>
-<li id="menu-item-652" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="knowledgebase/index.html"><span>Pricing</span></a></li>
-<li id="menu-item-1648" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="#"><span>API</span></a>
+<li id="menu-item-652" class="menu-item menu-item-type-post_type menu-item-object-page"><a href="<?= $pricing_url ?>"><span>Pricing</span></a></li>
+<li id="menu-item-1648" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children"><a href="<?= $api_url ?>"><span>API</span></a>
 </li>
-<li id="menu-item-192" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="https://dashboard.tawk.to/"><span>Login</span></a></li>
+<li id="menu-item-192" class="menu-item menu-item-type-custom menu-item-object-custom"><a href="<?= $login_url ?>"><span>Login</span></a></li>
 </ul></nav> <a class="responsive-menu-toggle" href="#"><i class='icon-menu'></i></a>
 </div>
 </div>

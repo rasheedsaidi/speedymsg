@@ -5,6 +5,10 @@ use yii\helpers\Html;
 $this->title = 'Payment';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div id="Subheader"><div class="container"><div class="column one"><h1 class="title"><?= Html::encode($this->title) ?></h1></div></div></div>
+<div class="sections_group">
+<div class="section" style="padding-top:0px; padding-bottom:0px; background-color:"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column">
+
 <div class="col-md-12">
 
                             <div class="post">                            
@@ -60,3 +64,5 @@ $this->params['breadcrumbs'][] = $this->title;
 			</div>
                             </div>
                         </div>
+</div></div></div></div>
+</div>

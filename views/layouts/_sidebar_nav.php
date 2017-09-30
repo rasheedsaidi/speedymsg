@@ -4,64 +4,38 @@ use yii\helpers\Html;
 <div class="row">
                             <?php 
 							if(!Yii::$app->user->isGuest) { ?>
-				<div class="col-xs-12">
-				<div id='cssmenu'>
-					<ul>
-					   <li class='active has-sub'><a href='#'><span>SEND SMS</span></a>
-					      <ul>
-							<li role="presentation"><?=  Html::a('SEND SINGLE SMS', ['/message/create']); ?></li>
-							<li class="active" role="presentation"><?=  Html::a('SEND BULK SMS', ['/message/bulk']); ?></li>
-							<li class="last" role="presentation"><?=  Html::a('SEND GROUP SMS', ['/message/group']); ?></li>
-					    </ul>
-					   </li>
-					   <!-- li role="presentation"><?php //=  Html::a('SCHEDULED JOB', ['/schedule/index']); ?></li-->
-					  <li role="presentation"><?=  Html::a('ADDRESS BOOK', ['/addressbook/index']); ?></li>
-					  <li class='active has-sub'><a href='#'><span>REPORTS</span></a>
-					      <ul>
-							<li role="presentation"><?=  Html::a('CREDIT REPORTS', ['/reports/credit_statistics']); ?></li>
-							<li class="" role="presentation"><?=  Html::a('TODAY\'s STATISTICS', ['/reports/today_statistics']); ?></li>
-							<li class="last" role="presentation"><?=  Html::a('SMS REPORTS', ['/reports/sms_statistics']); ?></li>
-							<!-- li class="last" role="presentation"><?php //=  Html::a('SMS SUMMARY', ['/reports/sms_summary']); ?></li-->
-					    </ul>
-					   </li>
-					   <!-- li role="presentation"><?php //=  Html::a('MONTHLY SUMMARY', ['/site/summary']); ?></li-->
-					   <li class='last' role="presentation"><?=  (Yii::$app->user->isGuest) ? Html::a('LOG IN', ['/site/login']): Html::a('LOGOUT', ['/site/logout']); ?></li>
-					</ul>
-					</div>
-				</div>
-			
+							<div class="custom-wrapper pure-g" id="menu">
+            <div class="pure-u-1 pure-u-md-1-3">
+                <div class="pure-menu">
+                    <a href="#" class="pure-menu-heading custom-brand">MESSAGE PORTAL</a>
+                    <a href="#" class="custom-toggle" id="toggle"><s class="bar"></s><s class="bar"></s></a>
+                </div>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3">
+                <div class="pure-menu pure-menu-horizontal custom-can-transform">
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover"><a href="#" id="menuLink1" class="pure-menu-link">SEND MESSAGE</a>
+                            <ul class="pure-menu-children">
+                                <li class="pure-menu-item"><?=  Html::a('SEND SINGLE SMS', ['/message/create'], ['class' => 'pure-menu-link']); ?></li>
+                                <li class="pure-menu-item"><?=  Html::a('SEND BULK SMS', ['/message/bulk'], ['class' => 'pure-menu-link']); ?></li>
+                                <li class="pure-menu-item"><?=  Html::a('SEND GROUP SMS', ['/message/group'], ['class' => 'pure-menu-link']); ?></li>
+                            </ul>
+                        </li>
+                        <li class="pure-menu-item"><?=  Html::a('ADDRESS BOOK', ['/addressbook/index'],  ['class' => 'pure-menu-link']); ?></li>
+                        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover"><a href="#" id="menuLink1" class="pure-menu-link">REPORTS</a>
+                            <ul class="pure-menu-children">
+                                <li class="pure-menu-item"><?=  Html::a('CREDIT REPORTS', ['/reports/credit_statistics'], ['class' => 'pure-menu-link']); ?></li>
+                                <li class="pure-menu-item"><?=  Html::a('TODAY\'s STATISTICS', ['/reports/today_statistics'], ['class' => 'pure-menu-link']); ?></li>
+                                <li class="pure-menu-item"><?=  Html::a('SMS REPORTS', ['/reports/sms_statistics'], ['class' => 'pure-menu-link']); ?></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>			
 			
 			<?php 
 								
-							} else {
+							}
 							?>
-							<div style="padding:20px;">
-                                <div class="widget-header" style="padding-bottom:15px;">
-                                    <h3>Quick Signup</h3>
-                                </div>
-                                <div class="widget-body">
-                                    <?php $form = ActiveForm::begin([]); ?>
-                                        <div class="form-group">
-                                            <input type="text" name="Profile[full_name]" class="form-control input-lg" placeholder="Enter full name">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" name="User[username]" class="form-control input-lg" placeholder="Email or phone number">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" name="User[newPassword]" class="form-control input-lg" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="checkbox">
-                                                <label class="string optional" for="terms">
-                                                    <input type="checkbox" id="terms" style="">
-                                                    <a href="#">I Agree with Term and Conditions</a>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <button class="btn btn-block btn-custom">Sign Up</button>
-                                        </div>
-                                    </form>
-                                </div></div>
-                                <?php } ?>
-                            </div>
+							

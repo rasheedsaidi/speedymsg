@@ -14,7 +14,7 @@ $config = [
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
+        ],        
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
@@ -60,7 +60,11 @@ $config = [
     'modules' => [
         'user' => [
             'class' => Da\User\Module::class,
-        ]
+            'classMap' => [
+                'User' => app\models\User::class,
+            ],
+        ],
+        
     ]
 ];
 

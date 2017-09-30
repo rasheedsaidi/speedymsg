@@ -23,6 +23,8 @@ use app\models\Credit;
 use yii\widgets\ActiveForm;
 
 use app\models\User;
+use app\models\Price;
+use app\models\RequestForm;
 
 use Yii;
 use yii\filters\AccessControl;
@@ -40,7 +42,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['pricing', 'payment', 'contact', 'about', 'services', 'index', 'order_now', 'api'],
+                        'actions' => ['pricing', 'payment', 'contact', 'about', 'services', 'index', 'order_now', 'api', 'request-quote'],
                         'allow'   => true,
                         'roles'   => ['?', '@'],
                     ],
@@ -91,8 +93,38 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-    	$this->layout = '@app/views/layouts/home';        
-        return $this->render('index');
+    	$request = new RequestForm();
+
+        $post = Yii::$app->request->post();
+        if ($request->load($post)) {
+
+            // validate for ajax request
+            if (Yii::$app->request->isAjax) {
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                return ActiveForm::validate($user);
+            }
+
+            // validate for normal request
+            if ($request->validate()) {
+
+                // perform registration
+                //$role = $this->module->model("Role");
+                $user->role_id = $user::ROLE_USER;
+                $user->status = $user::STATUS_ACTIVE;
+                $user->created_at = date('Y-m-d H:i:s');
+                $user->updated_at = date('Y-m-d H:i:s');
+
+                $user->save(false);
+                
+                //send email
+
+                // set flash
+                // don't use $this->refresh() because user may automatically be logged in and get 403 forbidden
+                $successText = Yii::t("You registration is successful. You can now start sending messages");
+                $guestText = "";
+            }
+        }    
+        return $this->render('index', compact('request'));
     }
 
     public function actionLogin()
@@ -161,7 +193,6 @@ class SiteController extends Controller
 
     public function actionLogout()
     {
-    	$this->layout = '@app/views/layouts/home';
         Yii::$app->user->logout();
 
         return $this->goHome();
@@ -169,7 +200,6 @@ class SiteController extends Controller
 
     public function actionContact()
     {
-    	$this->layout = '@app/views/layouts/login';
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
             Yii::$app->session->setFlash('contactFormSubmitted');
@@ -184,26 +214,22 @@ class SiteController extends Controller
 
     public function actionAbout()
     {
-    	$this->layout = '@app/views/layouts/site';
-		var_dump("Got here");exit;
         return $this->render('about');
     }
     
 	public function actionServices()
     {
-    	$this->layout = '@app/views/layouts/site';
         return $this->render('services');
     }
     
 	public function actionPricing()
     {
-    	$this->layout = '@app/views/layouts/inner';
-        return $this->render('pricing');
+        $prices = Price::find()->all();        
+        return $this->render('pricing', compact('prices'));
     }
     
     public function actionScratchcard()
-    {    	
-    	$this->layout = '@app/views/layouts/site';
+    { 
     	
     	$data = Yii::$app->request->post();
     	
@@ -214,7 +240,8 @@ class SiteController extends Controller
 		    $id = Yii::$app->user->id;
 		    $trans_id = $data['transaction_id'];
     		$pin = Utility::isValidPIN($data['pin'], $amount);
-    		if($pin == 1) {		    	
+            
+    		if($pin == 1) {
 		    	
 		    	$price = Utility::getPrice($amount, $type);
 		    	$credit = Credit::find()->where(['user_id' => $id])->andWhere(['type' => $type])->andWhere(['price_id' => $price['id']])->one();
@@ -283,8 +310,7 @@ class SiteController extends Controller
     
 	public function actionOrder_now()
     {
-    	$this->layout = '@app/views/layouts/site';
-    	$id = Yii::$app->user->id;    	    
+    	$id = Yii::$app->user->id;
         	
     	$data = Yii::$app->request->post();
 		if(isset($data['amt']) && !empty($data['amt'])) {
@@ -364,7 +390,6 @@ class SiteController extends Controller
     
 	public function actionOrder_now1()
     {
-    	$this->layout = '@app/views/layouts/site';
     	
     	$data = Yii::$app->request->post();
     	$resp = 'error';
@@ -431,13 +456,11 @@ class SiteController extends Controller
     
 	public function actionPayment()
     {
-    	$this->layout = '@app/views/layouts/site';
         return $this->render('payment');
     }
     
 	public function actionApi()
     {
-    	$this->layout = '@app/views/layouts/site';
     	$id = Yii::$app->user->id;
     	$credit = Utility::getUserCredit($id); //var_dump($credit);exit;
         return $this->render('api', ['credit' => $credit]);
@@ -468,6 +491,29 @@ class SiteController extends Controller
     	
     	echo json_encode("Your request was sent successfully. We'll get back to you as soon as possible.");	        	
 	    exit;    	
+    }
+
+    public function actionRequestQuote() {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $data = \Yii::$app->request->post();
+        
+        $quote = new RequestForm();
+        if($quote->load($data) && $quote->validate()) {
+            $quote->created_at = date('Y-m-d H:i:s');
+            $quote->save(false);
+            return ['error' => false, 'message' => 'Your quote has been receive. We\'ll get back to you as soon as possible.'];
+        } else {
+            $quote->validate();
+            $errors = [];
+            if(count($quote->errors) > 0) {
+                foreach ($quote->errors as $key => $value) {
+                    foreach ($value as $error) {
+                        $errors[$key] = $error;
+                    }
+                }
+            }
+            return ['error' => true, 'messages' => $errors];
+        }             
     }
     
     public function actionTransaction() {

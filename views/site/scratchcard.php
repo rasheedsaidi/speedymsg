@@ -15,16 +15,33 @@ $e_url = urldecode(Url::to('https://voguepay.com/pay/'));
 //var_dump($data);exit;
 
 	?>
+<div id="Subheader"><div class="container"><div class="column one"><h1 class="title"><?= Html::encode($this->title) ?></h1></div></div></div>
+<div class="sections_group">
+<div class="section" style="padding-top:0px; padding-bottom:0px; background-color:"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column">
+ <h4>Payment detail</h4>
 
-
-                <h4 class="h4cap">Make payment</h4>  
-                <?php if (Yii::$app->session->hasFlash('payment_reply'))
-                		echo Yii::$app->session->getFlash('payment_reply')
-                ?>    
-				<div class="row">				
+  
+                <div class="column one column_column">
+		<table>
+			<tr>
+				<th>Amount</th>
+				<th>Description</th>
+				<th>Transaction Ref</th>
+			</tr>
+			<tr>
+				<td>&#8358; <?= $data['amount']; ?></td>
+				<td>Bulk SMS Online Order</td>
+				<td><?= $data['transaction_id']; ?></td>
+			</tr>
+		</table>
+	</div> 
+				<div class="row" id="auth-container">				
                         <div class="col-md-8 col-md-offset-2 col-sm-12">
                         <div class="pad10 white-bg-box">
-								
+                        	<h4>Make payment</h4>
+							<?php if (Yii::$app->session->hasFlash('payment_reply'))
+                		echo Yii::$app->session->getFlash('payment_reply')
+                ?> 	
 								<?php 
 								$form = ActiveForm::begin([		
 		//'action' => ['/site/order_summary'],
@@ -61,5 +78,9 @@ $e_url = urldecode(Url::to('https://voguepay.com/pay/'));
 								<div class="space-20"></div>
 							</div>
 							</div>
-					
+
+
+
+</div></div></div></div>
+</div>					
 					

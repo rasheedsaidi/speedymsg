@@ -26,42 +26,27 @@ $mailer = Yii::$app->mailer;
             ->setSubject($subject)
             ->send();*/
 ?>
-<section class="main">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="map">
-                                <img src="<?php echo Yii::$app->request->baseUrl; ?>/assets2/img/general/map.png" alt="" class="img-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="widget">
-                                <div class="widget-header">
-                                    <h3>Office Address</h3>
-                                </div>
-                                <div class="widget-body">
-                                    <!-- address>
-                                        <strong>Helloworld Techonologies</strong><br/>
-                                        77 Herbert, Macaulay Way, Ebute Metta, Yaba, Lagos<br/>
-                                        admin@speedysms.com.ng<br/>
-                                        Phone : 08153505442
-                                    </address-->
-                                    <address>
-                                        <strong>SpeedySMS</strong><br/>
-                                        University of Lagos,<br/>
-                                        Faculty of Engineering, <br/>
-                                        Akoka,<br/>
-                                        Lagos<br/>
-                                        admin@speedysms.com.ng<br/>
-                                        Phone : 08060553348, 08153505442
-                                    </address>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-sm-8">
-                            <div class="row">
+
+<div id="Subheader"><div class="container"><div class="column one"><h1 class="title"><?= Html::encode($this->title) ?></h1></div></div></div>
+<div class="sections_group">
+<div class="section" style="padding-top:0px; padding-bottom:0px; background-color:"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column">
+    <h3>Office Address</h3>
+<p class="lead">
+    <address>
+        <strong>SpeedySMS</strong><br/>
+        12, Cater Street<br/>
+        Ebute-Metta, <br/>
+        Yaba,<br/>
+        Lagos<br/>
+        admin@speedysms.com.ng<br/>
+        Phone : 08153505442, 08060553348
+    </address>
+</p>
+
+</div></div></div></div>
+
+<div class="section" style="padding-top:0px; padding-bottom:0px; background-color:"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column">
+<div class="row">
                                 <div class="col-md-12">
                                     <div class="widget">
                                     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
@@ -78,7 +63,7 @@ $mailer = Yii::$app->mailer;
                                         
                                             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
                                             <?= $form->errorSummary($model); ?>
-                                                <p>If you have any question, feel free to send message us</p>
+                                                <p>If you have any question, feel free to message us</p>
                                                 <div class="row">
                                                     <div class="col-xs-4">
                                                         <input type="text" name="ContactForm[name]" value="<?= $model->name; ?>" placeholder="Name" class="form-control input-lg">
@@ -108,7 +93,8 @@ $mailer = Yii::$app->mailer;
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+
+
+</div></div></div></div>
+</div>
+

@@ -11,7 +11,7 @@ use app\models\Contact;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Message */
-//var_dump($contact);
+//var_dump(Yii::$app->controller->id);
 $this->title = 'Manage Group Contacts';
 $this->params['breadcrumbs'][] = ['label' => 'Groups', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -31,10 +31,10 @@ $link_url = urldecode(Url::toRoute(['/group/link'], true));
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'name',
             'number',
-            'created_at',
+            //'created_at',
             /*
             [
 				'attribute' => 'group_name',
@@ -47,6 +47,7 @@ $link_url = urldecode(Url::toRoute(['/group/link'], true));
 	            },
 	        ],*/
 	        ['class' => 'yii\grid\ActionColumn', 'controller' => 'contact'],
+            
 
         ],
     ]); ?>
@@ -78,12 +79,12 @@ $link_url = urldecode(Url::toRoute(['/group/link'], true));
     </span>
     <input id="up" type="button" value="LOADING ..." style="margin-left: 1em;display:none;" disabled class="btn btn-info"> -->
     <?php
-     echo Html::a('Fetch Numbers', ['group/link'], [
+     /*echo Html::a('Fetch Numbers', ['group/link'], [
         'id' => 'fetch',
         'data-on-done' => 'fetchDone',
     	'class' => 'btn btn-success',
     ]
-); ?>
+);*/ ?>
     
     <!-- The global progress bar --
     <div id="progress" class="progress">
@@ -91,7 +92,7 @@ $link_url = urldecode(Url::toRoute(['/group/link'], true));
     </div-->
 	
 <div class="alert alert-info">Please enter your contacts in the format: <strong>name1:08079384934, name2:07094743953</strong>. You can also type in notepad then COPY and PASTE below:</div>
-    <?= $form->field($group, 'manage_contact')->textarea(['rows' => 6, 'id' => 'contact_body', 'placeholder' => 'name1:08079384934, name2:07094743953']) ?>   
+    <?= $form->field($group, 'manage_contact')->textarea(['rows' => 6, 'id' => 'contact_body', 'placeholder' => 'name1:08079384934, name2:07094743953'], ['class' => 'form-control']) ?>   
     <?= $form->field($group, 'user_id')->hiddenInput(['value'=>(Yii::$app->user->isGuest)? 0: Yii::$app->user->id])->label(false) ?>
     
 

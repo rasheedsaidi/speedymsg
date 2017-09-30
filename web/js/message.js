@@ -1,5 +1,3 @@
-var config = require('./config');
-
 
 $('document').ready(function() {
 	putLength();
@@ -84,6 +82,8 @@ function fetchDone (response) {
     $('#fetch').val(response.body);
 }
 
+console.log($('#fileupload').is(':visible'))
+if($('#fileupload').is(':visible')) {
 $(function () {
     'use strict';
     // Change this to the location of your server-side upload handler:
@@ -122,33 +122,7 @@ $(function () {
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 });
-
-$(document).ready(function () {
-
-    // ===========Featured Owl Carousel============
-    if ($(".owl-carousel-featured").length > 0) {
-        $(".owl-carousel-featured").owlCarousel({
-            items: 4,
-            lazyLoad: true,
-            pagination: true,
-            autoPlay: 5000,
-            stopOnHover: true
-        });
-    }
-
-    // ==================Counter====================
-    $('.item-count').countTo({
-        formatter: function (value, options) {
-            return value.toFixed(options.decimals);
-        },
-        onUpdate: function (value) {
-            console.debug(this);
-        },
-        onComplete: function (value) {
-            console.debug(this);
-        }
-    });
-});
+}
 
 $(document).ready(function () {
     $('#freesms').on('submit', function(e) {
@@ -428,16 +402,16 @@ $(document).ready(function () {
     		if(arr.length > 0) {
 	    		for(var j in arr) {
 	    			var i = arr[j];
-	    			schedules = '<div class="form-group"><div class="row row1" id="shedule_item_' + i + '"><div class="col-md-5"><div class="row"><div class="col-md-3"><label>Date</label></div><div class="col-md-9"><input name="scheduled_date[' + i + ']" class="form-control scheduled_datepicker" type="text" placeholder="Select time" value="""/>';
+	    			schedules = '<div class="form-group"><div class="row row1" id="shedule_item_' + i + '"><div class="col-md-5"><div class="row"><div class="col-md-12"><label>Date</label><br><input name="scheduled_date[' + i + ']" class="form-control scheduled_datepicker" type="text" placeholder="Select time" value="""/>';
 	    			schedules += '</div></div></div><div class="col-md-5">';
-	    			schedules += '<div class="row"><div class="col-md-3"><label>Time</label></div><div class="col-md-9"><input name="scheduled_time[' + i + ']" class="form-control scheduled_timepicker" type="text" placeholder="Select time" value=""/>';
+	    			schedules += '<div class="row"><div class="col-md-12"><label>Time</label><br><input name="scheduled_time[' + i + ']" class="form-control scheduled_timepicker" type="text" placeholder="Select time" value=""/>';
 	    			schedules += '</div></div></div><div class="col-md-2"><a href="#" data-schedule-id="' + i + '" class="delete_scheduled_item">Delete</a></div></div></div>';
 	    		}
     		} else {
     			var i = 0;
-    			schedules = '<div class="form-group"><div class="row row1" id="shedule_item_' + i + '"><div class="col-md-5"><div class="row"><div class="col-md-3"><label>Date</label></div><div class="col-md-9"><input name="scheduled_date[' + i + ']" class="form-control scheduled_datepicker" type="text" placeholder="Select time" value="" />';
+    			schedules = '<div class="form-group"><div class="row row1" id="shedule_item_' + i + '"><div class="col-md-5"><div class="row"><div class="col-md-12"><label>Date</label><br><input name="scheduled_date[' + i + ']" class="form-control scheduled_datepicker" type="text" placeholder="Select time" value="" />';
     			schedules += '</div></div></div><div class="col-md-5">';
-    			schedules += '<div class="row"><div class="col-md-3"><label>Time</label></div><div class="col-md-9"><input name="scheduled_time[' + i + ']" class="form-control scheduled_timepicker" type="text" placeholder="Select time" value="" />';
+    			schedules += '<div class="row"><div class="col-md-12"><label>Time</label><br><input name="scheduled_time[' + i + ']" class="form-control scheduled_timepicker" type="text" placeholder="Select time" value="" />';
     			schedules += '</div></div></div><div class="col-md-2"><a href="#" data-schedule-id="' + i + '" class="delete_scheduled_item">Delete</a></div></div></div>';
     		}
     		//console.log(schedules)
@@ -448,9 +422,9 @@ $(document).ready(function () {
     		//var item = $('#shedule_item_' + i); console.log(item)
     		//var schedules = '';
     		//if(typeof(item) === 'undefined') {
-    			schedules = '<div class="form-group"><div class="row row1" id="shedule_item_' + i + '"><div class="col-md-5"><div class="row"><div class="col-md-3"><label>Date</label></div><div class="col-md-9"><input name="scheduled_date[' + i + ']" class="form-control scheduled_datepicker" type="text" placeholder="Select time" value=""/>';
+    			schedules = '<div class="form-group"><div class="row row1" id="shedule_item_' + i + '"><div class="col-md-5"><div class="row"><div class="col-md-12"><label>Date</label><br><input name="scheduled_date[' + i + ']" class="form-control scheduled_datepicker" type="text" placeholder="Select time" value=""/>';
     			schedules += '</div></div></div><div class="col-md-5">';
-    			schedules += '<div class="row"><div class="col-md-3"><label>Time</label></div><div class="col-md-9"><input name="scheduled_time[' + i + ']" class="form-control scheduled_timepicker" type="text" placeholder="Select time" value="" />';
+    			schedules += '<div class="row"><div class="col-md-12"><label>Time</label><br><input name="scheduled_time[' + i + ']" class="form-control scheduled_timepicker" type="text" placeholder="Select time" value="" />';
     			schedules += '</div></div></div><div class="col-md-2"><a href="#" data-schedule-id="' + i + '" class="delete_scheduled_item">Delete</a></div></div></div>';
     		//}
     		$('#schedule_form').append(schedules);

@@ -9,9 +9,8 @@ use yii\helpers\Html;
 
 $this->title = $name;
 ?>
+<div id="Subheader"><div class="container"><div class="column one"><h1 class="title"><?= Html::encode($this->title) ?></h1></div></div></div>
 <div class="site-error">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <div class="alert alert-danger">
         <?= nl2br(Html::encode($message)) ?>
@@ -21,7 +20,7 @@ $this->title = $name;
         The above error occurred while the Web server was processing your request.
     </p>
     <p>
-        Please contact us if you think this is a server error. Thank you.
+        Please <?= Html::a('contact us', '/contact') ?> if you think this is a server error. Thank you.
     </p>
 
 </div>

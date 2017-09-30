@@ -23,12 +23,32 @@ $btn_url = urldecode(Url::to('http://voguepay.com/images/buttons/buynow_blue.png
 $amount = $data['amt'];
 
 	?>
-
-
-                <h4 class="h4cap">Payment options</h4>        
-				<div class="row"> 
-				<div class="col-md-6 col-sm-12">
-                        <div class="pad10 white-bg-box">
+<div id="Subheader"><div class="container"><div class="column one"><h1 class="title"><?= Html::encode($this->title) ?></h1></div></div></div>
+<div class="sections_group">
+<div class="section" style="padding-top:0px; padding-bottom:0px; background-color:"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column">
+ <h4>Payment options</h4>
+<p class="lead">
+	<div class="column one column_column">
+		<table>
+			<tr>
+				<th>Amount</th>
+				<th>Description</th>
+				<th>Transaction Ref</th>
+			</tr>
+			<tr>
+				<td>&#8358; <?= $amount; ?></td>
+				<td>Bulk SMS Online Order</td>
+				<td><?= $merchant_ref; ?></td>
+			</tr>
+		</table>
+	</div>
+	<div class="column one-second column_icon_box">
+		<div class="icon_box icon_position_top">
+			<div class="desc_wrapper">
+				<h4 class="title-left">Pay using debit card</h4>
+			</div>
+			<div class="twk-input-container clearfix">
+				<div class="pad10 white-bg-box">
 								
 								<?php 
 								$form = ActiveForm::begin([
@@ -79,9 +99,16 @@ $amount = $data['amt'];
 			<?php ActiveForm::end(); ?>					
 								<div class="space-20"></div>
 							</div>
-							</div>
-                        <div class="col-md-6 col-sm-12">
-                        <div class="pad10 white-bg-box">
+			</div>
+		</div>
+	</div>
+	<div class="column one-second column_icon_box">
+		<div class="icon_box icon_position_top">
+			<div class="desc_wrapper">
+				<h4 class="title-left">Pay using scratch card</h4>
+			</div>
+			<div class="twk-input-container clearfix">
+				<div class="pad10 white-bg-box">
 								
 								<?php 
 								$form = ActiveForm::begin([
@@ -114,7 +141,7 @@ $amount = $data['amt'];
                                         <div class="row">
                                             <div class="space-20"></div>
 											<div class="col-md-7">
-											<button name="add_to_cart" type="submit" class="btn btn-custom form-control"> Continue to pay</button>											
+											<button name="add_to_cart" type="submit" class="button button_filled form-control"> Continue to pay</button>											
 											</div>
 											<div class="col-md-5">
                                             </div>
@@ -126,15 +153,17 @@ $amount = $data['amt'];
 			<?php ActiveForm::end(); ?>					
 								<div class="space-20"></div>
 							</div>
-							</div>
-							</div>
-				<div class="row"> 
+			</div>
+		</div>
+	</div>
+
+<div class="row"> 
                         <div class="col-md-12 col-sm-12">							
                         <div class="alert alert-success">
                         <p>In addition to the above methods, you can call (08153505442) us to deliver the SpeedySMS Scratch cards to you. Or make bank deposit into our account, then call or send email or SMS with payment details for activation:</p>
-                        <h4>
+                        <!--h4>
                         	Request bank details.
-                        </h4></div>
+                        </h4--></div>
 								<?php 
 								/*
 								$resp = Yii::$app->session->getFlash("order-success");
@@ -149,5 +178,13 @@ $amount = $data['amt'];
 							</div>
 							
                         </div>
+				
+</p>
+
+
+
+</div></div></div></div>
+</div>
+
 					
 					

@@ -7,12 +7,13 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Contact */
 /* @var $form yii\widgets\ActiveForm */
-/*
+
+
 $group = Group::find()->asArray()->all();
         $groups = array();
         foreach ($group as $value) {
         	$groups[$value['id']] = $value['name'];
-        }*/
+        }
 
 ?>
 

@@ -46,6 +46,12 @@ class ReportsController extends Controller {
             ],
         ];
     }
+
+    public function beforeAction($action) {
+        $this->layout = '@app/views/layouts/messaging';
+        return parent::beforeAction($action);
+    }
+    
 	public function actionIndex() {
 		return $this->render("index");
 	}

@@ -11,9 +11,9 @@ $this->title = 'Create Message';
 $this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="message-create">
+<div class="form-container">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode('New Single Message') ?></h1>
 	<?php 
 	if (Yii::$app->session->getFlash('smsSent') !== null) {
 		echo Alert::widget([

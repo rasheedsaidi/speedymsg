@@ -52,6 +52,11 @@ class ContactController extends Controller
         ];
     }
 
+    public function beforeAction($action) {
+        $this->layout = '@app/views/layouts/messaging';
+        return parent::beforeAction($action);
+    }
+
     /**
      * Lists all Contact models.
      * @return mixed

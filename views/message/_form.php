@@ -34,7 +34,7 @@ foreach ($credits as $credit) {
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'recipient')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'recipient')->textInput() ?>
 
     <?= $form->field($model, 'sender_id')->textInput() ?>
 
@@ -42,12 +42,12 @@ foreach ($credits as $credit) {
     
     <div id="form-group">	
 <div class="row">
-	<div class="col-md-6">	
+	<div class="column one-second column_column">	
 	<?= Html::radio("message_body", false, ['id' => 'new_message']) ?>
-	<label>New Message</label>	
+	<label>New Message</label>
 	</div>
 	
-	<div class="col-md-6">	
+	<div class="column one-second column_column">	
 	<?= Html::radio("message_body", false, ['id' => 'existing_message']) ?>
 	<label>Saved Message</label>	
 	</div>
@@ -88,14 +88,14 @@ if($saved_messages && !empty($saved_messages)) {
 
 <div id="schedule_form">	
 <div class="row" style="display: none;">
-	<div class="col-md-6">
-	<label>Set Date</label>
+	<div class="column one-second column_column">
+	<label>Set Date</label><br>
 	<input name="scheduled_date[]" class="form-control" type="text" placeholder="Select time" value="" id="scheduled_datepicker"/>
 		
 	</div>
 	
-	<div class="col-md-6">
-	<label>Set Time</label>
+	<div class="column one-second column_column">
+	<label>Set Time</label><br>
 	<input name="scheduled_time[]" class="form-control" type="text" placeholder="Select time" value="" id="scheduled_timepicker"/>
 	</div>
 </div>
@@ -103,14 +103,16 @@ if($saved_messages && !empty($saved_messages)) {
 </div>
 <?= Html::button('Add schedule', ['class' => 'btn btn-info', 'id' => 'add_scheduled_item']) ?>
 </div>
-<div class="form-group">
+<!--input type="hidden" name="sending_profile" value="express"-->
+
+	<?php if(empty($profiles)) {
+		echo '<p>You\'ve no SMS Credit to send messages. Please click the button below to buy credit.<br>' . Html::a('Buy SMS Credit', ['/site/payment'], ['class' => 'btn btn-info']) . '</p>';	
+	} else {
+	 ?>
+	 <div class="form-group">
 	<label class="control-label" for="sending_profile">Service type</label>
 	<?=Html::dropDownList('sending_profile', [], $profiles, ['class' => 'form-control']) ?>
 	</div>
-	<?php if(empty($profiles)) {
-		echo Html::submitButton('No credit found', ['class' => 'btn btn-info', 'disabled' => 'disabled']);	
-	} else {
-	 ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Send SMS' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::submitButton('Reset', ['class' => 'btn btn-info']) ?>

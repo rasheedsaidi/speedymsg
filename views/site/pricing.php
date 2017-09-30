@@ -6,101 +6,62 @@ $this->title = 'Pricing';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<div id="Subheader"><div class="container"><div class="column one"><h1 class="title"><?= Html::encode($this->title) ?></h1></div></div></div>
 
-                        
-						<p>
-						SpeedySMS provides users with two types of SMS service delivery based on speed, urgency, importance, and budget. These service types are labeled as Standard and Express respectively.						
-						</p>
-						<div class="subpage-title">
-                                    <h2>Standard Pricing Plan <?= Html::a("Order Now", "index.php?r=site/payment", ['class' => "btn btn-success"])?></h2>
-                                </div>
-						<div class="tablein">
-							<table class="table table-bordered table-hover">
-							<tr>
-			<th colspan="3" class="tablehead">
+<div class="sections_group">
+<div class="section" style="padding-top:0px; padding-bottom:0px; background-color:"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column">
+<p class="lead">
+    SpeedySMS lets customer send premium messages at all times with speedy and highly reliable messaging gateway at comparatively cheap rates. We understand that your messages are important and urgency and need to be delivered instantly.
+</p>
+
+<p class="lead">
+    With SpeedySMS, ONE(1) SMS message is equal to ONE(1) Unit of messages. <b>NO HIDDEN CHARGES</b>. We are always at your service at 24/7.
+</p>
+
+</div></div></div></div>
+
+<div class="section" style="padding-top:0px; padding-bottom:0px; background-color:"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column"><h3>Express Pricing Plan [ <?= Html::a("Order Now", "index.php?r=site/payment", ['class' => "btn btn-success"])?> ]</h3>
+<p class="lead">
+  <?php
+
+  if(isset($prices) && count($prices) > 0) {
+
+  ?>
+   <table class="table table-bordered table-hover">
+   <tr>
+      <th colspan="3" class="tablehead">
     <h4>Price per SMS</h4>
-	</th>
-	</tr>
-    
-  
-  <tr>
-    <td>#</td>
-    <td># of Units</td>
-    <td>Price Per SMS (N)</td>
+  </th>
   </tr>
-  <tr>
-    <td>1</td>
-    <td>1-999</td>
-    <td>N 1.7</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>1,000-9,999</td>
-    <td>N 1.6</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>10,000-99,999</td>
-    <td>N 1.5</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>100,000-999,999</td>
-    <td>N 1.4</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>1,000,000-Up</td>
-    <td>N 1.3</td>
-				</tr>
-				</table>
-							    
-							
-                            </div>
-							
-<div class="subpage-title">
-                                    <h2>Express Pricing Plan <?= Html::a("Order Now", "index.php?r=site/payment", ['class' => "btn btn-success"])?></h2>
-                                </div>
-						<div class="tablein">
-							    
-							<table class="table table-bordered table-hover">
-							<tr>
-			<th colspan="3" class="tablehead">
-    <h4>Price per SMS</h4>
-	</th>
-	</tr>
-    
-  
   <tr>
     <td>#</td>
     <td># of Units</td>
     <td>Price Per SMS(N)</td>
   </tr>
+  <?php 
+  $index = 1;
+  foreach($prices as $price) {
+  ?>
   <tr>
-    <td>1</td>
-    <td>1-999</td>
-    <td>N 2.1</td>
+    <td><?= $index ?></td>
+    <td><?= number_format($price->min_price) . ' - ' . number_format($price->max_price) ?></td>
+    <td><?= '&#8358; ' . number_format($price->price, 2, '.', '') ?></td>
   </tr>
-  <tr>
-    <td>2</td>
-    <td>1,000-9,999</td>
-    <td>N 2.0</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>10,000-99,999</td>
-    <td>N 1.9</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>100,000-999,999</td>
-    <td>N 1.8</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>1,000,000-Up</td>
-    <td>N 1.7</td>
-				</tr>
-				</table>
-                            </div>							
+  
+  <?
+  $index++;
+  }
+  ?>
+  </table>
+  <?php
+  } else {
+    echo "<h4>Please contact us for price list</h4>";
+  }
+  ?>
+
+        
+</p>
+</div></div></div></div>
+
+</div>							
 							

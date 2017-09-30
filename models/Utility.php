@@ -482,6 +482,7 @@ if(strlen($paddedNo['number']) > 5) {
 	public static function isValidPIN($pin_no, $amt) {
 		$pin_no = sha1($pin_no);
 		$pin = Pin::find()->where(['pin' =>  $pin_no])->one();
+		
 		if ($pin) {
 			if($pin->status == '0') {
 				if($pin->amount != $amt) {

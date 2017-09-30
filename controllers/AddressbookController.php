@@ -42,6 +42,7 @@ class AddressbookController extends \yii\web\Controller
     }
     public function actionIndex()
     {
+        $this->layout = '@app/views/layouts/messaging';
         return $this->render('index');
     }
 

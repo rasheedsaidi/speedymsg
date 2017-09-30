@@ -74,6 +74,11 @@ class MessageController extends Controller
         ];
     }
 
+    public function beforeAction($action) {
+    	$this->layout = '@app/views/layouts/messaging';
+    	return parent::beforeAction($action);
+    }
+
     /**
      * Lists all Message models.
      * @return mixed
@@ -226,8 +231,8 @@ class MessageController extends Controller
 		        		$session = Yii::$app->session;
         				$session->setFlash('smsSent', 'Insufficient credit to send messages.');
 		        		return $this->render('create', [
-			                'message' => $sms,
-			            	'message_log' => $sms_log
+			                'model' => $sms,
+			            	'model_log' => $sms_log
 			            ]);
 		    }
 			
@@ -279,6 +284,7 @@ class MessageController extends Controller
 					$sms = new Message();
 					return $this->render('create', [
 						'model' => $sms,
+                        'model_log' => $sms_log,
 						'schedules' => array($schedules)
 					]);
 		        	
@@ -295,6 +301,7 @@ class MessageController extends Controller
 	            //return $this->refresh('#success');
 	            return $this->render('create', [
                 'model' => $sms,
+                'model_log' => $sms_log,
             ]);
         	}
         	
@@ -310,6 +317,7 @@ class MessageController extends Controller
             $sms = new Message();
             return $this->render('create', [
                 'model' => $sms,
+                'model_log' => $sms_log,
             ]);
         } else {
         	if (Yii::$app->request->isAjax) {    		

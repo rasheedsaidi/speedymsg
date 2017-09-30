@@ -65,11 +65,12 @@ class GroupController extends Controller
     }
     
 	public function beforeAction($action)
-	{            
+	{          
+        $this->layout = '@app/views/layouts/messaging';  
 	    if ($action->id == 'link' || $action->id == 'manage') {
 	        $this->enableCsrfValidation = false;
 	    }
-	
+	   
 	    return parent::beforeAction($action);
 	}
     

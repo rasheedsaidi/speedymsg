@@ -36,7 +36,7 @@ foreach ($credits as $credit) {
 	}
 }
 ?>
-<div class="message-create">
+<div class="form-container">
 
     <h1><?= Html::encode($this->title) ?></h1>
 	<?php 
@@ -71,12 +71,12 @@ foreach ($credits as $credit) {
     
     <div id="form-group">	
 <div class="row">
-	<div class="col-md-6">	
+	<div class="column one-second column_column">	
 	<?= Html::radio("message_body", false, ['id' => 'new_message']) ?>
 	<label>New Message</label>	
 	</div>
 	
-	<div class="col-md-6">	
+	<div class="column one-second column_column">	
 	<?= Html::radio("message_body", false, ['id' => 'existing_message']) ?>
 	<label>Saved Message</label>	
 	</div>
@@ -118,13 +118,13 @@ if($saved_messages && !empty($saved_messages)) {
 
 <div id="schedule_form">	
 <div class="row" style="display: none;">
-	<div class="col-md-6">
+	<div class="column one-second column_column">
 	<label>Set Date</label>
 	<input name="scheduled_date[]" class="form-control" type="text" placeholder="Select time" value="" id="scheduled_datepicker"/>
 		
 	</div>
 	
-	<div class="col-md-6">
+	<div class="column one-second column_column">
 	<label>Set Time</label>
 	<input name="scheduled_date[]" class="form-control" type="text" placeholder="Select time" value="" id="scheduled_timepicker"/>
 	</div>
