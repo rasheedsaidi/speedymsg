@@ -87,7 +87,7 @@ $sms_statistics_url = urldecode(Url::toRoute(['/reports/sms_statistics']));
 <div class="column one">
  
 <div class="logo">
-<h1><a id="logo" href="index.html" title="tawk.to"><img class="scale-with-grid" src="<?php echo Yii::$app->request->baseUrl; ?>/web/images/logo.jpg" alt="speedysms logo"/></a></h1> </div>
+<h1><a id="logo" href="<?= $home_url ?>" title="tawk.to"><img class="scale-with-grid" src="<?php echo Yii::$app->request->baseUrl; ?>/web/images/logo.jpg" alt="speedysms logo"/></a></h1> </div>
  
 <div class="menu_wrapper">
  
@@ -96,7 +96,7 @@ if(Yii::$app->user->isGuest) {
 ?>
 <a id="header_action_button" href="<?= $register_url ?>">Sign Up</a>
 <?php } else { ?>
-<a id="header_action_button" href="<?= $logout_url ?>">Log Out</a>
+<a id="header_action_button" href="<?= $logout_url ?>" data-method="post">Log Out</a>
 <?php } ?>
 
  
@@ -155,7 +155,9 @@ if(Yii::$app->user->isGuest) {
 <div id="Subheader"><div class="container"><div class="column one"><h1 class="title"><?= Html::encode($this->title) ?></h1></div></div></div>
 <div class="sections_group">
 <div class="section" style="padding-top:0px; padding-bottom:0px; background-color:"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column">
-
+<?= Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+]) ?>
 <?php echo \Yii::$app->view->renderFile('@app/views/layouts/_sidebar_nav.php'); ?>
 
 <?= $content ?>
@@ -174,13 +176,8 @@ if(Yii::$app->user->isGuest) {
 <div class="column one">
 <a id="back_to_top" href="#"><i class="icon-up-open-big"></i></a>
  
-<div class="copyright">
-© 2017 SpeedySMS.com.ng inc. All Rights Reserved. </div>
- 
-<div class="social">
-<ul>
-</ul>
-</div>
+<div class="copyright">© 2017 Helloworldng.com. All Rights Reserved. </div>
+
 </div>
 </div>
 </div>

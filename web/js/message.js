@@ -287,14 +287,16 @@ $(document).ready(function () {
     		lang:'en',
     		format:'d-M-Y',
     		formatDate:'Y-m-d',
-    		timepicker:false
+    		timepicker:false,
+            startDate: new Date()
     		});
     	
     	$('.scheduled_timepicker').datetimepicker({
     		lang:'en',
     		format:'H:i:s',
     		step:5,
-    		datepicker:false
+    		datepicker:false,
+            startDate: new Date()
     		});
     	
     	$('body').on('focus, click', ".scheduled_datepicker", function(ev) {
@@ -304,7 +306,8 @@ $(document).ready(function () {
 				lang:'en',
 				format:'d-m-Y',
 				formatDate:'Y-m-d',
-				timepicker:false
+				timepicker:false,
+                startDate: new Date()
         		});
     	});
 		
@@ -314,7 +317,8 @@ $(document).ready(function () {
         		lang:'en',
         		format:'H:i:s',
         		step:5,
-        		datepicker:false
+        		datepicker:false,
+                startDate: new Date()
         		});
     	});
     	

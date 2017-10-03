@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Da\User\Model\User;
 
 /**
  * CreditController implements the CRUD actions for Credit model.
@@ -53,8 +54,11 @@ class CreditController extends Controller
      */
     public function actionView($id)
     {
+        $credit = $this->findModel($id);
+        $user = User::find()->select(['email', 'id',])->where(['id' => $credit->user_id])->one();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'user' => $user
         ]);
     }
 
@@ -87,12 +91,14 @@ class CreditController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $user = User::find()->select(['email', 'id',])->where(['id' => $model->user_id])->one();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'user' => $user
             ]);
         }
     }

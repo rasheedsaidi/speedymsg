@@ -61,7 +61,7 @@ print_r($conn, true);exit; */
 ?>
 <div class="form-container">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode("SMS to many numbers at once") ?></h1>
 	<?php 
 	if (Yii::$app->session->getFlash('smsSent') !== null) {
 		echo Alert::widget([
@@ -87,7 +87,7 @@ print_r($conn, true);exit; */
     		<div class="alert alert-info">
     			<p>To personalize this SMS, create a csv file in Ms Excel with two columns (name, number)</p>
     			<p>In the SMS body field below: use ::name:: to insert the name for each SMS.</p>
-    			<p>For more information, please <?= Html::a('click here', ['/site/help']) ?>.</p>
+    			<p>For more information, please <?= Html::a('contact us', ['/site/contact']) ?>.</p>
     		</div> 
     	</div>
     </div>
@@ -155,15 +155,15 @@ if($saved_messages && !empty($saved_messages)) {
 </div>
 <?= Html::button('Add schedule', ['class' => 'btn btn-info', 'id' => 'add_scheduled_item']) ?>
 </div>
+
+<?php if(empty($profiles)) {
+		echo '<p>You\'ve no SMS Credit to send messages. Please click the button below to buy credit.<br>' . Html::a('Buy SMS Credit', ['/site/payment'], ['class' => 'btn btn-info']) . '</p>';	
+	} else {
+	 ?>
 <div class="form-group">
 	<label class="control-label" for="sending_profile">Service type</label>
 	<?=Html::dropDownList('sending_profile', [], $profiles, ['class' => 'form-control']) ?>
 	</div>
-
-	<?php if(empty($profiles)) {
-		echo Html::submitButton('No credit found', ['class' => 'btn btn-info', 'disabled' => 'disabled']);	
-	} else {
-	 ?>
     <div class="form-group">
         <?= Html::submitButton($message->isNewRecord ? 'Send BULK SMS' : 'Update', ['class' => $message->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-info']) ?>

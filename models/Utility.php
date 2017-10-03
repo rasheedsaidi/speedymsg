@@ -99,7 +99,7 @@ print 'iconv Function Not Exists !';
 		
 				        	
 			        		$resp = Utility::sendSMSBulk($sms->sender_id, $sms->body, $paddedNo, $sms->type, $profile, $user_id);
-			        		//var_dump($resp);exit;
+			        		
 			        		if($resp) {			        			
 								$resps = explode(",", $resp);
 								foreach ($resps as $r) {
@@ -345,20 +345,25 @@ if(strlen($paddedNo['number']) > 5) {
 		return false;
 	}
     
-	public static function sendSMSBulk($sender, $body, $mobile, $type, $profile, $id=0)
+	public static function sendSMSBulk1($sender, $body, $mobile, $type, $profile, $id=0)
     {
 		$user_id = ($id != 0)? $id: Yii::$app->user->id;
     	$credit = Credit::find()->where(['user_id' => $user_id])->andWhere(['id' => $profile])->one();
 		if($credit) {
 			if($credit->type != NULL){
 				if($credit->type == 'express') {
-					return self::sendExpressSMS2($sender, $body, $mobile, $type, $profile);
+					return self::sendExpressSMS3($sender, $body, $mobile, $type, $profile);
 				} else {
-					return self::sendStandardSMS2($sender, $body, $mobile, $type, $profile);
+					return self::sendStandardSMS($sender, $body, $mobile, $type, $profile);
 				}
 			}
 		}
     	return false;
+    }
+
+    public static function sendSMSBulk($sender, $body, $mobile, $type, $profile, $id=0)
+    {
+		return self::sendExpressSMS3($sender, $body, $mobile, $type, $profile);
     }
     
     public static function sendStandardSMS ($sender, $body, $mobile, $type, $profile) {
@@ -385,6 +390,20 @@ if(strlen($paddedNo['number']) > 5) {
 		$resp = $obj->Submit(); //var_dump($resp);exit;
 		if($resp) {
 			$responses = explode("|", $resp);
+		}
+		return $responses;
+    }
+
+    public static function sendExpressSMS3 ($sender, $body, $mobile, $type, $profile) {
+		$responses = false;
+    	// send the message using BODY, SENDER_ID, and NUMBER
+    	//http://smsplus4.routesms.com:8080/bulksms/bulksms?username=helloworldnaira&password=rtydnf45&type=0&message=test%20message&source=test@@&destination=23400000000&dlr=1
+        //$obj = new Sender ("121.241.242.114", "8080", "hel1-smsuser", "123@abc", $sms_detail['sender'], $sms_detail['body'], $sms_detail['mobile'], "0", "1");
+        //$obj = new Sender ("121.241.242.114", "8080", "hel1-smsuser", "123@abc", $sender, $body, $mobile, $type, "1");
+		$obj = new Sender ("smsplus4.routesms.com", "8080", "helloworldnaira", "rtydnf45", $sender, $body, $mobile, $type, "1");
+		$resp = $obj->Submit(); //var_dump($resp);exit;
+		if($resp) {
+			return $resp;
 		}
 		return $responses;
     }

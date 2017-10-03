@@ -85,7 +85,7 @@ class ReportsController extends Controller {
 	
 	public function actionSms_statistics() {
 		$model = new Reports();
-		$stats = "";
+		$stats = $model::SmsStatistics(date('Y-m-d'), date('Y-m-d'));
 		
 		$data = Yii::$app->request->get();
 		$loaded = $model->load($data);

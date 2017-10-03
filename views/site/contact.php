@@ -10,13 +10,22 @@ use yii\captcha\Captcha;
 $this->title = 'Contact';
 $this->params['breadcrumbs'][] = $this->title;
 
+/*
+Yii::$app->mailer->compose('<view_name>', <option>)
+->setFrom("<from email>")
+->setTo("<to email>")
+->setSubject("<subject>")
+// ->setHtmlBody("<b> Hello User </b>")
+// ->setTextBody("Hello User")
+->send();
+*/
 
-Yii::$app->mailer->compose()
+/*Yii::$app->mailer->compose()
             ->setTo('rasheedsaidi@gmail.com')
             ->setFrom('sales@speedysms.com.ng')
             ->setSubject('Invite')
             ->setTextBody('Hello!')
-            ->send();
+            ->send(); */
 /*
 $mailer = Yii::$app->mailer;
         $subject = "Test email";

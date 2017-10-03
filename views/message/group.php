@@ -12,7 +12,7 @@ use kartik\datetime\DateTimePicker;
 /* @var $this yii\web\View */
 /* @var $model app\models\Message */
 
-$this->title = 'Create Message';
+$this->title = 'Group SMS';
 $this->params['breadcrumbs'][] = ['label' => 'Messages', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -38,7 +38,7 @@ foreach ($credits as $credit) {
 ?>
 <div class="form-container">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode("SMS to selected group of numbers") ?></h1>
 	<?php 
 	if (Yii::$app->session->getFlash('smsSent') !== null) {
 		echo Alert::widget([
@@ -52,7 +52,7 @@ foreach ($credits as $credit) {
     <?php $form = ActiveForm::begin(); ?>
 	
     <?= $form->field($message, 'recipient')->label('Select Group from list')->dropdownList($groups) ?>
-    <?= Html::a('Add Group', Yii::$app->homeUrl.'?r=group/create', ['class'=>'btn btn-primary'])?>
+    <?= Html::a('Add Group', ['group/create'], ['class'=>'btn btn-primary'])?>
 
     <?= $form->field($message, 'sender_id')->textInput(['maxlength' => true, 'label'=>'Sender ID']) ?>
 
@@ -133,15 +133,16 @@ if($saved_messages && !empty($saved_messages)) {
 </div>
 <?= Html::button('Add schedule', ['class' => 'btn btn-info', 'id' => 'add_scheduled_item']) ?>
 </div>
+
+    <?php if(empty($profiles)) {
+		echo '<p>You\'ve no SMS Credit to send messages. Please click the button below to buy credit.<br>' . Html::a('Buy SMS Credit', ['/site/payment'], ['class' => 'btn btn-info']) . '</p>';	
+	} else {
+	 ?>
 	<div class="form-group">
 	<label class="control-label" for="sending_profile">Service type</label>
 	<?=Html::dropDownList('sending_profile', [], $profiles, ['class' => 'form-control']) ?>
-	</div>
+	</div>	
 	
-	<?php if(empty($profiles)) {
-		echo Html::submitButton('No credit found', ['class' => 'btn btn-info', 'disabled' => 'disabled']);	
-	} else {
-	 ?>
     <div class="form-group">
         <?= Html::submitButton($message->isNewRecord ? 'Send GROUP SMS' : 'Update', ['class' => $message->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-info']) ?>

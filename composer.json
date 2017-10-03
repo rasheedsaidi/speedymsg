@@ -20,7 +20,9 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "2amigos/yii2-usuario": "~1.0",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "mabiola/paystack-php-lib" : "~1.0"
+        "mabiola/paystack-php-lib" : "~1.0",
+        "alexgx/yii2-phpexcel": "@dev",
+        "katanyoo/yii2-mailgun-mailer": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

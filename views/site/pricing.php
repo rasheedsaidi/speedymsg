@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div></div></div></div>
 
-<div class="section" style="padding-top:0px; padding-bottom:0px; background-color:"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column"><h3>Express Pricing Plan [ <?= Html::a("Order Now", "index.php?r=site/payment", ['class' => "btn btn-success"])?> ]</h3>
+<div class="section" style="padding-top:0px; padding-bottom:0px; background-color:"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column"><h3>Express Pricing Plan [ <?= Html::a("Order Now", ["site/payment"], ['class' => "btn btn-success"])?> ]</h3>
 <p class="lead">
   <?php
 

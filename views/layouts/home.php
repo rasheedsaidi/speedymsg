@@ -77,7 +77,7 @@ $api_url = urldecode(Url::toRoute(['/site/api']));
 <div class="column one">
  
 <div class="logo">
-<h1><a id="logo" href="index.html" title="tawk.to"><img class="scale-with-grid" src="<?php echo Yii::$app->request->baseUrl; ?>/web/images/logo.jpg" alt="speedysms logo"/></a></h1> </div>
+<h1><a id="logo" href="<?= $home_url ?>" title="tawk.to"><img class="scale-with-grid" src="<?php echo Yii::$app->request->baseUrl; ?>/web/images/logo.jpg" alt="speedysms logo"/></a></h1> </div>
  
 <div class="menu_wrapper">
  

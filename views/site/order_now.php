@@ -25,9 +25,9 @@ $amount = $data['amt'];
 	?>
 <div id="Subheader"><div class="container"><div class="column one"><h1 class="title"><?= Html::encode($this->title) ?></h1></div></div></div>
 <div class="sections_group">
-<div class="section" style="padding-top:0px; padding-bottom:0px; background-color:"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column">
+<div class="section" style="padding-top:0px; padding-bottom:0px; background-color:transparent;"><div class="section_wrapper clearfix"><div class="items_group clearfix"><div class="column one column_column">
  <h4>Payment options</h4>
-<p class="lead">
+
 	<div class="column one column_column">
 		<table>
 			<tr>
@@ -87,7 +87,8 @@ $amount = $data['amt'];
                                         <div class="row">
                                             <div class="space-20"></div>
 											<div class="col-md-7">
-											<input type='image' src='<?php echo $btn_url; ?>' alt='Continue to pay' class="">
+											<!--input type='image' src='<?php echo $btn_url; ?>' alt='Continue to pay' class=""-->
+											<input type='button' disabled="disabled" value="Pay Online Available soon" alt='Continue to pay' class="">
 											</div>
 											<div class="col-md-5">
                                             </div>
@@ -141,7 +142,7 @@ $amount = $data['amt'];
                                         <div class="row">
                                             <div class="space-20"></div>
 											<div class="col-md-7">
-											<button name="add_to_cart" type="submit" class="button button_filled form-control"> Continue to pay</button>											
+											<input name="add_to_cart" type="submit" class="button button_filled" value="Continue to pay">											
 											</div>
 											<div class="col-md-5">
                                             </div>
@@ -157,8 +158,9 @@ $amount = $data['amt'];
 		</div>
 	</div>
 
-<div class="row"> 
-                        <div class="col-md-12 col-sm-12">							
+
+                      
+  <div class="column one column_icon_box">							
                         <div class="alert alert-success">
                         <p>In addition to the above methods, you can call (08153505442) us to deliver the SpeedySMS Scratch cards to you. Or make bank deposit into our account, then call or send email or SMS with payment details for activation:</p>
                         <!--h4>
@@ -174,17 +176,16 @@ $amount = $data['amt'];
 								}
 								*/
 
-								?>					
-							</div>
-							
-                        </div>
-				
-</p>
+								?>								
+
+
 
 
 
 </div></div></div></div>
 </div>
 
+				
+							</div>
 					
 					

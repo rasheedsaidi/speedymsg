@@ -22,12 +22,18 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        /*
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => true,
+        ],*/
+        'mailer' => [
+            'class' => 'katanyoo\mailgunmailer\Mailer',
+            'key' => 'key-b9742e93b3f5ac1f6ed84e3508a0aae6',
+            'domain' => 'smtp.mailgun.org',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

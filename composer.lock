@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c4f8917866caa42b576901639f23bf0",
+    "content-hash": "453e2d826f84dfdb5c2160a11163a3b6",
     "packages": [
         {
             "name": "2amigos/yii2-selectize-widget",
@@ -143,6 +143,50 @@
                 "yii2-user"
             ],
             "time": "2017-08-12T15:21:03+00:00"
+        },
+        {
+            "name": "alexgx/yii2-phpexcel",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AlexGx/yii2-phpexcel.git",
+                "reference": "386f8d1c1248071b9c25fd4781a0d767fecb810b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AlexGx/yii2-phpexcel/zipball/386f8d1c1248071b9c25fd4781a0d767fecb810b",
+                "reference": "386f8d1c1248071b9c25fd4781a0d767fecb810b",
+                "shasum": ""
+            },
+            "require": {
+                "phpoffice/phpexcel": "1.8.1",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "alexgx\\phpexcel\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Gubarev",
+                    "email": "gubarev.alex@gmail.com",
+                    "homepage": "http://actionmedia-labs.net"
+                }
+            ],
+            "description": "PhpExcel component extension for Yii2.",
+            "keywords": [
+                "PHPExcel",
+                "component",
+                "extension",
+                "yii"
+            ],
+            "time": "2017-05-10T14:44:10+00:00"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -668,6 +712,99 @@
                 "html"
             ],
             "time": "2017-06-03T02:28:16+00:00"
+        },
+        {
+            "name": "guzzle/guzzle",
+            "version": "v3.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "reference": "4de0618a01b34aa1c8c33a3f13f396dcd3882eba",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.3",
+                "symfony/event-dispatcher": ">=2.1"
+            },
+            "replace": {
+                "guzzle/batch": "self.version",
+                "guzzle/cache": "self.version",
+                "guzzle/common": "self.version",
+                "guzzle/http": "self.version",
+                "guzzle/inflection": "self.version",
+                "guzzle/iterator": "self.version",
+                "guzzle/log": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/plugin": "self.version",
+                "guzzle/plugin-async": "self.version",
+                "guzzle/plugin-backoff": "self.version",
+                "guzzle/plugin-cache": "self.version",
+                "guzzle/plugin-cookie": "self.version",
+                "guzzle/plugin-curlauth": "self.version",
+                "guzzle/plugin-error-response": "self.version",
+                "guzzle/plugin-history": "self.version",
+                "guzzle/plugin-log": "self.version",
+                "guzzle/plugin-md5": "self.version",
+                "guzzle/plugin-mock": "self.version",
+                "guzzle/plugin-oauth": "self.version",
+                "guzzle/service": "self.version",
+                "guzzle/stream": "self.version"
+            },
+            "require-dev": {
+                "doctrine/cache": "*",
+                "monolog/monolog": "1.*",
+                "phpunit/phpunit": "3.7.*",
+                "psr/log": "1.0.*",
+                "symfony/class-loader": "*",
+                "zendframework/zend-cache": "<2.3",
+                "zendframework/zend-log": "<2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle": "src/",
+                    "Guzzle\\Tests": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Guzzle Community",
+                    "homepage": "https://github.com/guzzle/guzzle/contributors"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "abandoned": "guzzlehttp/guzzle",
+            "time": "2014-01-28T22:29:15+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1203,6 +1340,50 @@
             "time": "2017-09-06T06:18:08+00:00"
         },
         {
+            "name": "katanyoo/yii2-mailgun-mailer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/katanyoo/yii2-mailgun-mailer.git",
+                "reference": "7316a1708626a4c73583b6813d619438cfbc6c3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/katanyoo/yii2-mailgun-mailer/zipball/7316a1708626a4c73583b6813d619438cfbc6c3b",
+                "reference": "7316a1708626a4c73583b6813d619438cfbc6c3b",
+                "shasum": ""
+            },
+            "require": {
+                "mailgun/mailgun-php": "1.7.1",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "katanyoo\\mailgunmailer\\": "",
+                    "Mailgun\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Katanyoo Ubalee",
+                    "email": "ubalee.k@gmail.com"
+                }
+            ],
+            "description": "Mailgun Mailer for Yii 2 framework.",
+            "keywords": [
+                "extension",
+                "mailer",
+                "mailgun",
+                "yii2"
+            ],
+            "time": "2014-12-02T17:03:43+00:00"
+        },
+        {
             "name": "mabiola/paystack-php-lib",
             "version": "1.0.1",
             "source": {
@@ -1252,6 +1433,46 @@
                 "paystack"
             ],
             "time": "2016-08-26T23:36:45+00:00"
+        },
+        {
+            "name": "mailgun/mailgun-php",
+            "version": "v1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mailgun/mailgun-php.git",
+                "reference": "b16608bd5f62108ab6fb279d40ed8b503ecf899d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mailgun/mailgun-php/zipball/b16608bd5f62108ab6fb279d40ed8b503ecf899d",
+                "reference": "b16608bd5f62108ab6fb279d40ed8b503ecf899d",
+                "shasum": ""
+            },
+            "require": {
+                "guzzle/guzzle": "<4.0,>=3.8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mailgun\\Tests": "tests/",
+                    "Mailgun": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Travis Swientek",
+                    "email": "travis@mailgunhq.com"
+                }
+            ],
+            "description": "The Mailgun SDK provides methods for all API functions.",
+            "time": "2014-05-27T17:45:51+00:00"
         },
         {
             "name": "moontoast/math",
@@ -1402,6 +1623,63 @@
                 "random"
             ],
             "time": "2017-09-27T21:40:39+00:00"
+        },
+        {
+            "name": "phpoffice/phpexcel",
+            "version": "1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPOffice/PHPExcel.git",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPOffice/PHPExcel/zipball/372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xml": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPExcel": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Maarten Balliauw",
+                    "homepage": "http://blog.maartenballiauw.be"
+                },
+                {
+                    "name": "Mark Baker"
+                },
+                {
+                    "name": "Franck Lefevre",
+                    "homepage": "http://blog.rootslabs.net"
+                },
+                {
+                    "name": "Erik Tilt"
+                }
+            ],
+            "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+            "homepage": "http://phpexcel.codeplex.com",
+            "keywords": [
+                "OpenXML",
+                "excel",
+                "php",
+                "spreadsheet",
+                "xls",
+                "xlsx"
+            ],
+            "time": "2015-05-01T07:00:55+00:00"
         },
         {
             "name": "psr/container",
@@ -4842,7 +5120,9 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "kartik-v/yii2-widget-datepicker": 20
+        "kartik-v/yii2-widget-datepicker": 20,
+        "alexgx/yii2-phpexcel": 20,
+        "katanyoo/yii2-mailgun-mailer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -214,18 +214,18 @@ class MessageController extends Controller
 			$sms->credit = $s_credit_used;
 			$sms->profile = $profile;
 			$sms->type = $data['type'];
+            $sms->save();
+            //echo $s_credit_used;exit;
+            
+            if (intval($post['save_message']) == 1) {
+                $save = new SentMessage();
+                $save->user_id = Yii::$app->user->id;
+                $save->title = substr($sms['body'], 0, 100);
+                $save->body = $sms['body'];
+                $save->posted_at = date('Y-m-d H:i:s');
+                $save->save(false);
+            }
 			
-        	$sms->save(); 
-        	//echo $s_credit_used;exit;
-        	
-        	if (intval($post['save_message']) == 1) {
-        		$save = new SentMessage();
-        		$save->user_id = Yii::$app->user->id;
-        		$save->title = substr($sms['body'], 0, 100);
-        		$save->body = $sms['body'];
-        		$save->posted_at = date('Y-m-d H:i:s');
-        		$save->save(false);
-        	}
         	
         	if(!Utility::isCreditEnough($profile, $s_credit_used)) {
 		        		$session = Yii::$app->session;
@@ -237,59 +237,59 @@ class MessageController extends Controller
 		    }
 			
 			$s = intval($data['scheduled']); //var_dump($s);exit;
-	        	if (intval($s) == 1) {
-					$dates = $_POST['scheduled_date'];
-					$times = $_POST['scheduled_time'];
-					//for($i =0; $i < count($dates); $i++) {
-						$schedules = array();
-					foreach($dates as $key=>$date) {
-						$date_split = explode('-', $dates[$key]);
-						$year = $date_split[2];
-						$month = $date_split[1];
-						$day = $date_split[0];
-						
-						$time_split = explode(':', $times[$key]);
-						$hour = $time_split[0];
-						$minute = $time_split[1];
-						$second = $time_split[2]; //print_r($_POST);
-						//print_r($time_split);exit;
-						$schedules[$key] = array('date' => $dates[$key], 'time' => $times[$key]);
-						$schedule = new Schedule();
-						$schedule->message_id = $sms->id;
-						$schedule->year = $year;
-						$schedule->month = $month;
-						$schedule->day = $day;
-						$schedule->hour = $hour;
-						$schedule->minute = $minute;
-						$schedule->second = $second;
-						$schedule->scheduled_date = date('Y-m-d', strtotime($dates[$key]));
-						$schedule->scheduled_time = $times[$key];
-						$datetime = date('Y-m-d', strtotime($dates[$key])) . ' ' . $times[$key];
-						$schedule->scheduled_datetime = $datetime;
-						$schedule->status = 0;
-						$schedule->started_at = null;
-						$schedule->created_at = date('Y-m-d H:i:s');
-						$schedule->save(false);  
-					}
+        	if (intval($s) == 1) {
+				$dates = $_POST['scheduled_date'];
+				$times = $_POST['scheduled_time'];
+				//for($i =0; $i < count($dates); $i++) {
+					$schedules = array();
+				foreach($dates as $key=>$date) {
+					$date_split = explode('-', $dates[$key]);
+					$year = $date_split[2];
+					$month = $date_split[1];
+					$day = $date_split[0];
 					
-					$session = Yii::$app->session;
-					$msg = '<p>Your message has been scheduled as follows:</p><p><ul>';
-					foreach($schedules as $sched) {
-						$msg .= '<li>Date: ' . $sched['date'] . ', Time: ' . $sched['time'] . '</li>';
-					}
-					$msg .= '</ul></p>';
-					$session->setFlash('smsSent', $msg);
-					//return $this->redirect(['view', 'id' => $sms->id]);
-					//return $this->refresh('#success');
-					$sms = new Message();
-					return $this->render('create', [
-						'model' => $sms,
-                        'model_log' => $sms_log,
-						'schedules' => array($schedules)
-					]);
-		        	
-		        	//var_dump($schedule);exit; INSERT INTO  schedule (message_id,  started_at) VALUES (2, '2015-30-14 7:30:41')
-	        	}
+					$time_split = explode(':', $times[$key]);
+					$hour = $time_split[0];
+					$minute = $time_split[1];
+					$second = $time_split[2]; //print_r($_POST);
+					//print_r($time_split);exit;
+					$schedules[$key] = array('date' => $dates[$key], 'time' => $times[$key]);
+					$schedule = new Schedule();
+					$schedule->message_id = $sms->id;
+					$schedule->year = $year;
+					$schedule->month = $month;
+					$schedule->day = $day;
+					$schedule->hour = $hour;
+					$schedule->minute = $minute;
+					$schedule->second = $second;
+					$schedule->scheduled_date = date('Y-m-d', strtotime($dates[$key]));
+					$schedule->scheduled_time = $times[$key];
+					$datetime = date('Y-m-d', strtotime($dates[$key])) . ' ' . $times[$key];
+					$schedule->scheduled_datetime = $datetime;
+					$schedule->status = 0;
+					$schedule->started_at = null;
+					$schedule->created_at = date('Y-m-d H:i:s');
+					$schedule->save(false);  
+				}
+				
+				$session = Yii::$app->session;
+				$msg = '<p>Your message has been scheduled as follows:</p><p><ul>';
+				foreach($schedules as $sched) {
+					$msg .= '<li>Date: ' . $sched['date'] . ', Time: ' . $sched['time'] . '</li>';
+				}
+				$msg .= '</ul></p>';
+				$session->setFlash('smsSent', $msg);
+				//return $this->redirect(['view', 'id' => $sms->id]);
+				//return $this->refresh('#success');
+				$sms = new Message();
+				return $this->render('create', [
+					'model' => $sms,
+                    'model_log' => $sms_log,
+					'schedules' => array($schedules)
+				]);
+	        	
+	        	//var_dump($schedule);exit; INSERT INTO  schedule (message_id,  started_at) VALUES (2, '2015-30-14 7:30:41')
+        	}
         	//
         	$sms_id = $sms->id;        	
         	$resp = Utility::sendSingle($sms, $profile);
@@ -440,6 +440,7 @@ class MessageController extends Controller
             
         	
         	$numbers->numbersFile = UploadedFile::getInstance($numbers, 'numbersFile');
+
             if ($numbers->upload()) {
                 $bulk = new Bulk();
                 $bulk->user_id = Yii::$app->user->id;
@@ -449,12 +450,12 @@ class MessageController extends Controller
 	            $bulk->save(false);
             } else {
             	$session = Yii::$app->session;
-        				$session->setFlash('smsSent', 'No file containing numbers selected.');
-		        		return $this->render('bulk', [
-			                'message' => $sms,
-			            	'schedule' => $schedule,
-			            	'numbers' => $numbers,
-			            ]);
+				$session->setFlash('smsSent', 'No file containing numbers selected.');
+        		return $this->render('bulk', [
+	                'message' => $sms,
+	            	'schedule' => $schedule,
+	            	'numbers' => $numbers,
+	            ]);
             }                      
             
 	        if (isset($bulk) && $bulk->id) {	
@@ -463,7 +464,7 @@ class MessageController extends Controller
 		        	$data_log = \Yii::$app->request->post('MessageLog', []);
 		        	$post = \Yii::$app->request->post();
 					
-		        	$bulknos = $this->loadNumbers($numbers->numbersFile->name, intval($data['personalised']));	
+		        	$bulknos = $this->loadNumbers($numbers->numbersFile->name, intval($data['personalised']));
 					
 		        	if(!$bulknos) {
 		        		$session = Yii::$app->session;
@@ -571,7 +572,7 @@ class MessageController extends Controller
 		        	
 		        	//var_dump($schedule);exit; INSERT INTO  schedule (message_id,  started_at) VALUES (2, '2015-30-14 7:30:41')
 	        	}
-	        	
+	        	var_dump($bulknos);exit;
 		        	
 		        	if(intval($data['personalised']) == 1) {
 				if(!Utility::sendPersonalized($sms, $profile, $bulknos)) {
@@ -659,23 +660,23 @@ class MessageController extends Controller
         	//var_dump($group_nos);exit;
 			
         	$sms->body = isset($sms['body']) ? $sms['body'] : null;
-					$profile = $_POST['sending_profile'];
-					$sms_length = ($sms['type'] == '2' || $sms['type'] == '6') ? strlen(Utility::sms__unicode($sms['body'])) : $sms['length'];
-					$s_credit_used = (float) Utility::getCurrentPrice($profile, $sms_length, Yii::$app->user->id, count($group_nos));
-					$sms->user_id = Yii::$app->user->id;
-					$sms->created_at = date('Y-m-d H:i:s');
-					$sms->length = $sms_length;
-					$sms->mode = "group";
-					$sms->recipient = $group_id;
-					$sms->sender_id = trim(substr($data['sender_id'], 0, 10));
-					$sms->personalised = intval($data['personalised']);
-					$sms->scheduled = intval($data['scheduled']);
-					$sms->credit = $s_credit_used;
-					$sms->profile = $profile;
-					$sms->type = $data['type'];
-		        	$sms->save(); 					
-		        	
-		        	$paddedNos = Utility::getNoGroup($group_nos, intval($data['personalised']));
+			$profile = $_POST['sending_profile'];
+			$sms_length = ($sms['type'] == '2' || $sms['type'] == '6') ? strlen(Utility::sms__unicode($sms['body'])) : $sms['length'];
+			$s_credit_used = (float) Utility::getCurrentPrice($profile, $sms_length, Yii::$app->user->id, count($group_nos));
+			$sms->user_id = Yii::$app->user->id;
+			$sms->created_at = date('Y-m-d H:i:s');
+			$sms->length = $sms_length;
+			$sms->mode = "group";
+			$sms->recipient = $group_id;
+			$sms->sender_id = trim(substr($data['sender_id'], 0, 10));
+			$sms->personalised = intval($data['personalised']);
+			$sms->scheduled = intval($data['scheduled']);
+			$sms->credit = $s_credit_used;
+			$sms->profile = $profile;
+			$sms->type = $data['type'];
+        	$sms->save(); 					
+        	
+        	$paddedNos = Utility::getNoGroup($group_nos, intval($data['personalised']));
         	
         if (intval($post['save_message']) == 1) {
         		$save = new SentMessage();
@@ -774,6 +775,7 @@ class MessageController extends Controller
 					            	'groups' => $groups,
 					            ]);				     
 		        	}
+                    
 		        	Utility::startSession();
 		        	$session = Yii::$app->session;
 		        	$session->setFlash('smsSent', 'Your messages were successfully sent to ' . count($group_nos) . ' numbers.');
@@ -845,18 +847,19 @@ class MessageController extends Controller
     }
     
     private function loadNumbers($numFile=NULL, $personalised=0) {
-    	if($numFile === NULL || !file_exists("uploads/" . $numFile)) {
+    	if($numFile === NULL || !file_exists("web/uploads/" . $numFile)) {
     		return [];
     	}
+        
     	//$data = \moonland\phpexcel\Excel::import("uploads/" . $numFile,
     	//[
         //'setFirstRecordAsKeys' => false, // if you want to set the keys of record column with first record, if it not set, the header with use the alphabet column on excel. 
         //'setIndexSheetByName' => false, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric. 
     	//]);
     	//return $data;
-    	if (0 == filesize("uploads/" . $numFile))
+    	if (0 == filesize("web/uploads/" . $numFile))
     		return false;
-    	$objPHPExcel = \PHPExcel_IOFactory::load("uploads/" . $numFile);
+    	$objPHPExcel = \PHPExcel_IOFactory::load("web/uploads/" . $numFile);
     	$sheet = $objPHPExcel->getSheet(0);
 		$highestRow = $sheet->getHighestRow();
 		$highestColumn = $sheet->getHighestColumn();
