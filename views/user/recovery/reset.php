@@ -21,6 +21,7 @@ use yii\widgets\ActiveForm;
 $this->title = Yii::t('usuario', 'Reset your password');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="form-container">
 <div class="row">
     <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
         <div class="panel panel-default">
@@ -44,4 +45,5 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+</div>
 </div>

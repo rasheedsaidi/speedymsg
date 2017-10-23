@@ -39,10 +39,13 @@ $this->registerCssFile(Yii::getAlias('@web') . "/web/css/sms.css");
                         'enableClientValidation' => true,
                     ]
                 ); ?>
+                <?= $form->errorSummary($model); ?>
 
                 <?= $form->field($model, 'email') ?>
 
                 <?= $form->field($model, 'username') ?>
+
+                <?php //= $form->field($model, 'confirmed_at')->hiddenInput(['value'=> 1])->label(false); ?>
 
                 <?php if ($module->generatePasswords == false): ?>
                     <?= $form->field($model, 'password')->passwordInput() ?>

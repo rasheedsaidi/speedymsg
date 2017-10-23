@@ -8,10 +8,10 @@ use app\models\MessageLog;
 
 use app\models\Utility;
 
-use amnah\yii2\user\models\forms\LoginForm;
+use Da\User\Form\LoginForm;
 
 use yii\filters\AccessControl;
-
+use Da\User\Traits\ContainerAwareTrait;
 use Yii;
 use app\models\Message;
 use yii\data\ActiveDataProvider;
@@ -25,6 +25,8 @@ use amnah\yii2\user\models\User;
  */
 class SmsController extends Controller
 {
+    use ContainerAwareTrait;
+
 	public function behaviors()
     {
         return [
@@ -84,9 +86,10 @@ class SmsController extends Controller
 
     public function actionSend($sender="", $user="", $password="", $to="", $msg="", $profile="", $type=0) 
     {
-    	//echo $sender.$user.$password.$to.$msg.$profile;exit;
-    	$model = new LoginForm();
-    	$login = ["LoginForm" => ["username" => $user, "password" => $password]]; 
+    	//echo $sender.$user.$password.$to.$msg.$profile;exit;       
+        
+    	//$model = new LoginForm();
+    	//$login = ["LoginForm" => ["username" => $user, "password" => $password]]; 
     	//$post = Yii::$app->request->();
     	//echo json_encode($login);exit;
     	if($to == "") {
@@ -101,14 +104,18 @@ class SmsController extends Controller
     		echo json_encode(['error' => 'Profile value is required.']);
     		exit;
     	} 
-    	$model->load($login);
-        if ($model->validate()) {
+    	//$model->load($login);
+        $form = $this->make(LoginForm::class);
+        $form->login = $user;
+        $form->password = $password;
+        if ($form->login()) {
         	$sms = new Message();
 	        $sms_log = new MessageLog();
 	        $schedule = new Schedule();
         	//echo json_encode(['success' => "User details correct"]);
         	//$duser = (new \yii\db\Query())->from('user')->where('user.username =\'' . $user . '\'')->all();
-        	$duser = User::find()->where(['username' => $user])->one();
+        	//$duser = User::find()->where(['username' => $user])->one();
+            $duser = $form->getUser();
         	//echo 'got'.json_encode($duser);exit;
         	$user_id = $duser->id;
         	//echo json_encode($user_id);exit;

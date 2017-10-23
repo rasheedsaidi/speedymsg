@@ -18,7 +18,7 @@ use yii\bootstrap\Alert;
 
 <?php if ($module->enableFlashMessages): ?>
     <div class="row">
-        <div class="col-xs-8 col-xs-2 gap">
+        <div class="col-md-8 col-md-offset-2 gap text-center">
             <?php foreach (Yii::$app->session->getAllFlashes() as $type => $message): ?>
                 <?php if (in_array($type, ['success', 'danger', 'warning', 'info'], true)): ?>
                     <?= Alert::widget(

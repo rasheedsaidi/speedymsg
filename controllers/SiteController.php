@@ -42,12 +42,12 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['pricing', 'payment', 'contact', 'about', 'services', 'index', 'order_now', 'api', 'request-quote'],
+                        'actions' => ['pricing', 'payment', 'contact', 'about', 'services', 'index', 'api', 'request-quote'],
                         'allow'   => true,
                         'roles'   => ['?', '@'],
                     ],
                     [
-                        'actions' => ['create', 'bulk', 'group', 'logout', 'scratchcard', 'success', 'failed', 'transaction'],
+                        'actions' => ['create', 'bulk', 'group', 'logout', 'scratchcard', 'success', 'failed', 'transaction', 'order_now'],
                         'allow'   => true,
                         'roles'   => ['@'],
                     ],
@@ -320,12 +320,12 @@ class SiteController extends Controller
 			$data['amt'] = $_SESSION['sms_amt'];
 			$data['type'] = $_SESSION['sms_type'];
 		}
-		
+		/*
     	if (Yii::$app->user->isGuest) {
     		$session = Yii::$app->session;
 	        $session->setFlash('loginRequired', 'You need to login to continue.');
 	        return $this->redirect(['/user/login']);
-        }
+        } */
     	$resp = 'error';
     	$merchant_ref = substr(md5(time()), 2, 14);
     	Utility::startSession();

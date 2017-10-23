@@ -87,6 +87,7 @@ $forms.on('afterValidateAttribute', function(event, attribute, messages) {
 });
 
 
+
 (function (window, document) {
 var menu = document.getElementById('menu'),
     WINDOW_CHANGE_EVENT = ('onorientationchange' in window) ? 'orientationchange':'resize';
@@ -119,10 +120,13 @@ function closeMenu() {
     }
 }
 
-document.getElementById('toggle').addEventListener('click', function (e) {
-    toggleMenu();
-    e.preventDefault();
-});
+if(document.getElementById('toggle')) {
+	document.getElementById('toggle').addEventListener('click', function (e) {
+	    toggleMenu();
+	    e.preventDefault();
+	});
+}
 
-window.addEventListener(WINDOW_CHANGE_EVENT, closeMenu);
+if(window)
+	window.addEventListener(WINDOW_CHANGE_EVENT, closeMenu);
 })(this, this.document);

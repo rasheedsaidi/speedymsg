@@ -22,7 +22,8 @@
         "kartik-v/yii2-widget-datepicker": "@dev",
         "mabiola/paystack-php-lib" : "~1.0",
         "alexgx/yii2-phpexcel": "@dev",
-        "katanyoo/yii2-mailgun-mailer": "@dev"
+        "katanyoo/yii2-mailgun-mailer": "@dev",
+        "bryglen/yii2-sendgrid": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

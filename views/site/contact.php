@@ -19,13 +19,14 @@ Yii::$app->mailer->compose('<view_name>', <option>)
 // ->setTextBody("Hello User")
 ->send();
 */
-
-/*Yii::$app->mailer->compose()
-            ->setTo('rasheedsaidi@gmail.com')
-            ->setFrom('sales@speedysms.com.ng')
-            ->setSubject('Invite')
-            ->setTextBody('Hello!')
-            ->send(); */
+/*
+$m = Yii::$app->mailer->compose()
+            ->setTo('rasheedsaidi@yahoo.com')
+            ->setFrom('hello@speedysms.com.ng')
+            ->setSubject('Test Email')
+            ->setTextBody('Hello! Welcome to SpeedySMS')
+            ->send();
+var_dump($m); */
 /*
 $mailer = Yii::$app->mailer;
         $subject = "Test email";
