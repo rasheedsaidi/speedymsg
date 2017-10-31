@@ -4,8 +4,8 @@ $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
 
 $config = [
-    'id' => 'basic',
-    'name' => 'SpeedySMS',
+    'id' => 'speedysms',
+    'name' => 'Speedy SMS',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
@@ -58,8 +58,8 @@ $config = [
         */
         'mailer' => [
             'class' => 'katanyoo\mailgunmailer\Mailer',
-            'key' => 'key-b9742e93b3f5ac1f6ed84e3508a0aae6',
-            'domain' => 'https://api.mailgun.net/v3/speedysms.com.ng',
+            'key' => 'key-b9742e93b3f5ac1f6ed84e3508a0aae6', //'key-b9742e93b3f5ac1f6ed84e3508a0aae6',
+            'domain' => 'https://api.mailgun.net/v3/mg.smartpayng.com', //'https://api.mailgun.net/v3/speedysms.com.ng',
         ], 
         /*
         'mailer' => [
@@ -114,7 +114,9 @@ $config = [
             ],
             'layout' => '@app/views/layouts/messaging'
         ],
-        
+        'api' => [
+            'class' => 'app\modules\api\Module',
+        ],
         
     ]
 ];
